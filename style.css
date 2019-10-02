@@ -1,3 +1,6 @@
 article {
 	padding: 1rem;
 }
+section:nth-of-type(3){
+	padding: 0.75rem 0 0 0;
+}
