@@ -1,16 +1,16 @@
-import { compareNumbers } from './compare-numbers.js';
+
+import { updateFeedback } from './update-feedback.js';
 
 const guessButton = document.getElementById('guess-button');
 let guessInput = document.getElementById('guess-input');
 let guessesLeft = document.getElementById('guesses-left');
 let result = document.getElementById('result');
 const instructions = document.getElementById('instructions');
-
+const randomNumber = Math.floor((Math.random() * 20) + 1);
 
 // Set initial state
 guessInput.value = 10;
 let guesses = 4;
-const randomNumber = Math.floor((Math.random() * 20) + 1);
 
 // Set Event handlers
 guessButton.addEventListener('click', () => {
@@ -18,24 +18,7 @@ guessButton.addEventListener('click', () => {
     if (guesses > 0) {
         guesses--;
         guessesLeft.textContent = guesses;
-        let guess = Number(guessInput.value);
-
-        if ((compareNumbers(guess, randomNumber) === 1)) {
-            result.textContent = 'Too high!';
-
-        }
-        else if (compareNumbers(guess, randomNumber) === -1) {
-            result.textContent = 'Too low!';
-        }
-        else if (compareNumbers(guess, randomNumber) === 0) {
-            result.textContent = 'Congratulations! You win!';
-            result.style.color = 'green';
-            guessButton.disabled = true;
-        }
-
-        else {
-            result.textContent = 'Unexpected output.';
-        }
+        updateFeedback(randomNumber);
     }
     gameOverCheck();
 });
